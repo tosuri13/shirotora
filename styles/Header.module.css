@@ -1,0 +1,32 @@
+.header {
+  color: white;
+  background-color: var(--srtr-green);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  height: 10vh;
+  padding: 0 10rem;
+}
+
+.header H1 {
+  margin: 0;
+  font-size: 6rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 10vw;
+}
+
+.menu p {
+  font-size: 3rem;
+  transition: 0.2s;
+}
+
+.menu p:hover {
+  color: var(--srtr-green-hover)
+}
