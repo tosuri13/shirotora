@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import styles from "./Header.module.css";
 
 export default function Header(props) {
@@ -5,8 +6,12 @@ export default function Header(props) {
     <div className={styles.header}>
       <h1>SHIROTORA</h1>
       <div className={styles.menu}>
-        <a>Home</a>
-        <a>About</a>
+        <NextLink href="/" legacyBehavior>
+          <a>Home</a>
+        </NextLink>
+        <NextLink href="/about" legacyBehavior>
+          <a>About</a>
+        </NextLink>
       </div>
     </div>
   );
