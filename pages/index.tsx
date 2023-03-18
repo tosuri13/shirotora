@@ -1,15 +1,37 @@
 import { NextPage } from "next";
+import styles from "styles/Index.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-const IndexPage: NextPage = () => {
+const TimeTable = () => {
+  return (
+    <div className={styles.timetable}>
+      <p>タイムテーブル建設予定地</p>
+      <p>そのうちできるはずなので、乞うご期待!!</p>
+    </div>
+  );
+};
+
+const SideBar = () => {
+  return (
+    <div className={styles.sidebar}>
+      <p>サイドバー建設予定地</p>
+      <p>そのうちできるはずなので、乞うご期待!!</p>
+    </div>
+  );
+};
+
+const Index: NextPage = () => {
   return (
     <div>
       <Header />
-      <div>しろとら建設予定地</div>
+      <div className={styles.main}>
+        <TimeTable />
+        <SideBar />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default IndexPage;
+export default Index;
