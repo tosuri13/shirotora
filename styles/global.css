@@ -19,20 +19,14 @@
   }
 }
 
-@media all and (min-width: 768px) and (max-width: 1024px) {
+@media all and (min-width: 480px) and (max-width: 1024px) {
   * {
     font-size: 5px;
   }
 }
 
-@media all and (min-width: 480px) and (max-width: 768px) {
-  * {
-    font-size: 4px;
-  }
-}
-
 @media all and (max-width: 480px) {
   * {
-    font-size: 3px;
+    font-size: 4px;
   }
 }
