@@ -23,10 +23,11 @@
 }
 
 .menu a {
+  color: white;
   font-size: 3rem;
   text-decoration: none;
 }
 
 .menu a:visited {
-  color: inherit;
+  color: white;
 }

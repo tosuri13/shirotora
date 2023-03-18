@@ -31,12 +31,13 @@
 }
 
 .link a {
+  color: white;
   font-size: 3rem;
   text-decoration: none;
 }
 
 .link a:visited {
-  color: inherit;
+  color: white;
 }
 
 .link img {
