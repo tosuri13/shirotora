@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import styles from "styles/Index.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import StationButton from "components/StationButton";
 
 const TimeTable = () => {
   return (
@@ -15,8 +16,10 @@ const TimeTable = () => {
 const SideBar = () => {
   return (
     <div className={styles.sidebar}>
-      <p>サイドバー建設予定地</p>
-      <p>そのうちできるはずなので、乞うご期待!!</p>
+      <StationButton name="名谷" />
+      <StationButton name="総合運動公園" />
+      <StationButton name="学園都市" />
+      <StationButton name="伊川谷" />
     </div>
   );
 };

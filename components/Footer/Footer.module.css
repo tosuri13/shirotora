@@ -27,10 +27,7 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  width: 18rem;
-}
-
-.link a {
+  width: 15rem;
   color: white;
   font-size: 3rem;
   text-decoration: none;
@@ -41,6 +38,6 @@
 }
 
 .link img {
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
 }

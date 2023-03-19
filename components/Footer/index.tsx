@@ -5,14 +5,17 @@ export default function Footer(props) {
     <div className={styles.footer}>
       <p>@2023 UniUrchin</p>
       <div className={styles.links}>
-        <div className={styles.link}>
+        <a
+          className={styles.link}
+          href="https://github.com/UniUrchin/shirotora"
+        >
           <img src="/icons/github.svg" />
-          <a href="https://github.com/UniUrchin/shirotora">Github</a>
-        </div>
-        <div className={styles.link}>
+          <p>Github</p>
+        </a>
+        <a className={styles.link} href="https://twitter.com/?lang=ja">
           <img src="/icons/twitter.svg" />
-          <a href="https://twitter.com/?lang=ja">Twitter</a>
-        </div>
+          <p>Twitter</p>
+        </a>
       </div>
     </div>
   );
