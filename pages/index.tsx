@@ -4,6 +4,25 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import StationButton from "components/StationButton";
 
+const stations = [
+  "谷上",
+  "三宮",
+  "県庁前",
+  "大倉山",
+  "湊川公園",
+  "上沢",
+  "長田",
+  "新長田",
+  "板宿",
+  "妙法寺",
+  "名谷",
+  "総合運動公園",
+  "学園都市",
+  "伊川谷",
+  "西神南",
+  "西神中央",
+];
+
 const TimeTable = () => {
   return (
     <div className={styles.timetable}>
@@ -14,14 +33,11 @@ const TimeTable = () => {
 };
 
 const SideBar = () => {
-  return (
-    <div className={styles.sidebar}>
-      <StationButton name="名谷" />
-      <StationButton name="総合運動公園" />
-      <StationButton name="学園都市" />
-      <StationButton name="伊川谷" />
-    </div>
-  );
+  const stationButtons = stations.map((station) => {
+    return <StationButton name={station} />;
+  });
+
+  return <div className={styles.Sidebar}>{stationButtons}</div>;
 };
 
 const Index: NextPage = () => {
