@@ -1,27 +1,46 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styles from "./StationButton.module.css";
 
-function CustomRadio() {
-  const [isSelected, setSelected] = useState(false);
+type Props = {
+  station: string;
+  isSelected: boolean;
+  setSelectedStation: Dispatch<SetStateAction<string>>;
+};
 
-  const handleClick = () => {
-    isSelected ? setSelected(false) : setSelected(true);
-  };
+export const StationButton: React.FC<Props> = ({
+  station,
+  isSelected,
+  setSelectedStation,
+}) => {
+  return (
+    <div className={styles.stationButton}>
+      <CustomRadioButton
+        station={station}
+        isSelected={isSelected}
+        setSelectedStation={setSelectedStation}
+      />
+      <span />
+      <p>{station}</p>
+    </div>
+  );
+};
 
+const CustomRadioButton: React.FC<Props> = ({
+  station,
+  isSelected,
+  setSelectedStation,
+}) => {
   return isSelected ? (
-    <div className={styles.selected} onClick={handleClick}>
+    <div
+      className={styles.selected}
+      onClick={() => setSelectedStation(station)}
+    >
       <div className={styles.selectedInlineCircle} />
     </div>
   ) : (
-    <div className={styles.unselected} onClick={handleClick} />
+    <div
+      className={styles.unselected}
+      onClick={() => setSelectedStation(station)}
+    />
   );
-}
-
-export default function StationButton(props): JSX.Element {
-  return (
-    <div className={styles.stationButton}>
-      <CustomRadio />
-      <p>{props.name}</p>
-    </div>
-  );
-}
+};

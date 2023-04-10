@@ -3,7 +3,7 @@ import styles from "styles/About.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-const About: NextPage = () => {
+const AboutPage: NextPage = () => {
   return (
     <div>
       <Header />
@@ -13,4 +13,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default AboutPage;
