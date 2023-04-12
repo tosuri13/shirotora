@@ -1,17 +1,35 @@
 .main {
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
   margin: 5rem 10rem;
 }
 
-/* 暫定的にタイムテーブルのCSSを設定 */
 .timetable {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 120rem;
+}
+
+.stationSign {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 56rem;
+}
+
+.stationSign h2 {
+  padding: 0 2rem;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.signBorder {
+  flex-grow: 1;
+  border-top: 1rem solid var(--srtr-green);
+  border-bottom: 1rem solid var(--srtr-green);
+  height: 4rem;
 }
 
 .sidebar {

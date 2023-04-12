@@ -53,8 +53,11 @@ const IndexPage: NextPage = () => {
 const TimeTable: React.FC<Props> = ({ selectedStation }) => {
   return (
     <div className={styles.timetable}>
-      <p>タイムテーブル建設予定地</p>
-      <h2>{selectedStation}の情報を表示してるつもり...</h2>
+      <div className={styles.stationSign}>
+        <div className={styles.signBorder} />
+        <h2>{selectedStation}</h2>
+        <div className={styles.signBorder} />
+      </div>
     </div>
   );
 };
