@@ -60,18 +60,21 @@ const TimeTable: React.FC<Props> = ({ selectedStation }) => {
 };
 
 const Sidebar: React.FC<Props> = ({ selectedStation, setSelectedStation }) => {
-  const stationButtons = stations.map((station) => {
+  const stationButtons = stations.map((station, index) => {
     return (
-      <StationButton
-        key={station}
-        station={station}
-        isSelected={station === selectedStation ? true : false}
-        setSelectedStation={setSelectedStation}
-      />
+      <>
+        <StationButton
+          key={station}
+          station={station}
+          isSelected={station === selectedStation ? true : false}
+          setSelectedStation={setSelectedStation}
+        />
+        {index !== stations.length - 1 && <span />}
+      </>
     );
   });
 
-  return <div className={styles.Sidebar}>{stationButtons}</div>;
+  return <div className={styles.sidebar}>{stationButtons}</div>;
 };
 
 export default IndexPage;

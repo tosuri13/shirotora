@@ -1,25 +1,31 @@
 .stationButton {
-  width: 38rem;
+  width: 35rem;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .stationButton p {
-  margin: 0 0 0 40px;
-  font-size: 4rem;
+  font-size: 3.2rem;
+}
+
+.stationButton span {
+  width: 5rem;
 }
 
 .selected {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   background-color: white;
-  border: 0.2rem solid var(--srtr-green);
+  border: 0.5rem solid var(--srtr-green);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  left: -3rem;
 }
 
 .selectedInlineCircle {
@@ -30,9 +36,11 @@
 }
 
 .unselected {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   background-color: white;
   border: 0.5rem solid var(--srtr-green);
-  border-radius: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  left: -3rem;
 }
