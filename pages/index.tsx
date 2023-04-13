@@ -1,9 +1,10 @@
 import { NextPage } from "next";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState, Fragment } from "react";
 import styles from "styles/Index.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import { StationButton } from "components/StationButton";
+import { getIsHoliday } from "service/getIsHoliday";
 
 type Props = {
   selectedStation: string;
@@ -51,12 +52,43 @@ const IndexPage: NextPage = () => {
 };
 
 const TimeTable: React.FC<Props> = ({ selectedStation }) => {
-  return (
-    <div className={styles.timetable}>
+  const [isHoliday, setIsHoliday] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getIsHoliday();
+      setIsHoliday(response);
+    })();
+  }, [selectedStation]);
+
+  const StationSign: React.FC<Props> = ({ selectedStation }) => {
+    return (
       <div className={styles.stationSign}>
         <div className={styles.signBorder} />
         <h2>{selectedStation}</h2>
         <div className={styles.signBorder} />
+      </div>
+    );
+  };
+
+  const DiaSign: React.FC<{ isHoliday: boolean }> = ({ isHoliday }) => {
+    return (
+      <div className={styles.diasign}>
+        {isHoliday ? (
+          <img src="/icons/holiday_subway.svg" />
+        ) : (
+          <img src="/icons/normal_subway.svg" />
+        )}
+        <p>{isHoliday ? "休日ダイヤ" : "平日ダイヤ"}</p>
+      </div>
+    );
+  };
+
+  return (
+    <div className={styles.timetable}>
+      <StationSign selectedStation={selectedStation} />
+      <div className={styles.timetableInfo}>
+        <DiaSign isHoliday={isHoliday} />
       </div>
     </div>
   );
@@ -65,15 +97,14 @@ const TimeTable: React.FC<Props> = ({ selectedStation }) => {
 const Sidebar: React.FC<Props> = ({ selectedStation, setSelectedStation }) => {
   const stationButtons = stations.map((station, index) => {
     return (
-      <>
+      <Fragment key={index}>
         <StationButton
-          key={station}
           station={station}
           isSelected={station === selectedStation ? true : false}
           setSelectedStation={setSelectedStation}
         />
         {index !== stations.length - 1 && <span />}
-      </>
+      </Fragment>
     );
   });
 

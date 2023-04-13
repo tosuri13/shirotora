@@ -32,6 +32,35 @@
   height: 4rem;
 }
 
+.timetableInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5rem 0 2rem 0;
+}
+
+.diasign {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 18rem;
+  height: 5rem;
+  padding: 1rem 1.8rem;
+  border: 0.2rem solid var(--srtr-green);
+  border-radius: 0.5rem;
+}
+
+.diasign p {
+  font-size: 2rem;
+}
+
+.diasign img {
+  width: 3rem;
+  height: 3rem;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
