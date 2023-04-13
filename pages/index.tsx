@@ -6,9 +6,14 @@ import Footer from "components/Footer";
 import { StationButton } from "components/StationButton";
 import { getIsHoliday } from "service/getIsHoliday";
 
-type Props = {
+type StationProps = {
   selectedStation: string;
   setSelectedStation?: Dispatch<SetStateAction<string>>;
+};
+
+type DirectionProps = {
+  isWestBound: boolean;
+  setIsWestBound?: Dispatch<SetStateAction<boolean>>;
 };
 
 const stations: string[] = [
@@ -51,8 +56,9 @@ const IndexPage: NextPage = () => {
   );
 };
 
-const TimeTable: React.FC<Props> = ({ selectedStation }) => {
+const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
   const [isHoliday, setIsHoliday] = useState<boolean | undefined>(undefined);
+  const [isWestBound, setIsWestBound] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
@@ -61,7 +67,7 @@ const TimeTable: React.FC<Props> = ({ selectedStation }) => {
     })();
   }, [selectedStation]);
 
-  const StationSign: React.FC<Props> = ({ selectedStation }) => {
+  const StationSign: React.FC<StationProps> = ({ selectedStation }) => {
     return (
       <div className={styles.stationSign}>
         <div className={styles.signBorder} />
@@ -84,17 +90,54 @@ const TimeTable: React.FC<Props> = ({ selectedStation }) => {
     );
   };
 
+  const DirectionButton: React.FC<DirectionProps> = ({
+    isWestBound,
+    setIsWestBound,
+  }) => {
+    return (
+      <div className={styles.directionButtons}>
+        <div
+          className={
+            !isWestBound
+              ? styles.selectedDirectionButton
+              : styles.unselectedDirectionButton
+          }
+          onClick={() => setIsWestBound(!isWestBound)}
+        >
+          <p>谷上方面</p>
+        </div>
+        <div
+          className={
+            isWestBound
+              ? styles.selectedDirectionButton
+              : styles.unselectedDirectionButton
+          }
+          onClick={() => setIsWestBound(!isWestBound)}
+        >
+          <p>西神方面</p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.timetable}>
       <StationSign selectedStation={selectedStation} />
       <div className={styles.timetableInfo}>
         <DiaSign isHoliday={isHoliday} />
+        <DirectionButton
+          isWestBound={isWestBound}
+          setIsWestBound={setIsWestBound}
+        />
       </div>
     </div>
   );
 };
 
-const Sidebar: React.FC<Props> = ({ selectedStation, setSelectedStation }) => {
+const Sidebar: React.FC<StationProps> = ({
+  selectedStation,
+  setSelectedStation,
+}) => {
   const stationButtons = stations.map((station, index) => {
     return (
       <Fragment key={index}>

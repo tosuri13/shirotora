@@ -26,6 +26,7 @@
   align-items: center;
   position: absolute;
   left: -3rem;
+  cursor: pointer;
 }
 
 .selectedInlineCircle {
@@ -43,4 +44,5 @@
   border-radius: 50%;
   position: absolute;
   left: -3rem;
+  cursor: pointer;
 }
