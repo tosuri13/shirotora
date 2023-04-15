@@ -5,6 +5,7 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import { StationButton } from "components/StationButton";
 import { getIsHoliday } from "service/getIsHoliday";
+import { getTimeLine } from "service/getTimeLine";
 
 type StationProps = {
   selectedStation: string;
@@ -17,7 +18,7 @@ type DirectionProps = {
 };
 
 const stations: string[] = [
-  "谷上",
+  "新神戸",
   "三宮",
   "県庁前",
   "大倉山",
@@ -37,9 +38,11 @@ const stations: string[] = [
 
 const initialStation: string = stations[0];
 
-const IndexPage: NextPage = () => {
+const HomePage: NextPage<{ timeline: string }> = ({ timeline }) => {
   const [selectedStation, setSelectedStation] =
     useState<string>(initialStation);
+
+  console.log(timeline);
 
   return (
     <div>
@@ -62,8 +65,8 @@ const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await getIsHoliday();
-      setIsHoliday(response);
+      const isHoliday = await getIsHoliday();
+      setIsHoliday(isHoliday);
     })();
   }, [selectedStation]);
 
@@ -154,4 +157,9 @@ const Sidebar: React.FC<StationProps> = ({
   return <div className={styles.sidebar}>{stationButtons}</div>;
 };
 
-export default IndexPage;
+export default HomePage;
+
+export async function getServerSideProps() {
+  const timeline = await getTimeLine();
+  return { props: { timeline } };
+}
