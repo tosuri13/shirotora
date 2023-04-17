@@ -5,7 +5,7 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import { StationButton } from "components/StationButton";
 import { getIsHoliday } from "service/getIsHoliday";
-import { getTimeLine } from "service/getTimeLine";
+import { getTimetable } from "service/getTimetable";
 
 type StationProps = {
   selectedStation: string;
@@ -13,8 +13,8 @@ type StationProps = {
 };
 
 type DirectionProps = {
-  isWestBound: boolean;
-  setIsWestBound?: Dispatch<SetStateAction<boolean>>;
+  isForSeishin: boolean;
+  setIsForSeishin?: Dispatch<SetStateAction<boolean>>;
 };
 
 const stations: string[] = [
@@ -38,11 +38,9 @@ const stations: string[] = [
 
 const initialStation: string = stations[0];
 
-const HomePage: NextPage<{ timeline: string }> = ({ timeline }) => {
+const IndexPage: NextPage = () => {
   const [selectedStation, setSelectedStation] =
     useState<string>(initialStation);
-
-  console.log(timeline);
 
   return (
     <div>
@@ -61,14 +59,25 @@ const HomePage: NextPage<{ timeline: string }> = ({ timeline }) => {
 
 const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
   const [isHoliday, setIsHoliday] = useState<boolean | undefined>(undefined);
-  const [isWestBound, setIsWestBound] = useState<boolean>(true);
+  const [isForSeishin, setIsForSeishin] = useState<boolean>(true);
+  const [timetable, setTimetable] = useState<object>(undefined);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
+
       const isHoliday = await getIsHoliday();
+      const timetable = await getTimetable(
+        stations.indexOf(selectedStation),
+        isForSeishin
+      );
+
       setIsHoliday(isHoliday);
+      setTimetable(timetable);
+      setIsLoading(false);
     })();
-  }, [selectedStation]);
+  }, [selectedStation, isForSeishin]);
 
   const StationSign: React.FC<StationProps> = ({ selectedStation }) => {
     return (
@@ -94,28 +103,28 @@ const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
   };
 
   const DirectionButton: React.FC<DirectionProps> = ({
-    isWestBound,
-    setIsWestBound,
+    isForSeishin,
+    setIsForSeishin,
   }) => {
     return (
       <div className={styles.directionButtons}>
         <div
           className={
-            !isWestBound
+            !isForSeishin
               ? styles.selectedDirectionButton
               : styles.unselectedDirectionButton
           }
-          onClick={() => setIsWestBound(!isWestBound)}
+          onClick={() => setIsForSeishin(!isForSeishin)}
         >
-          <p>谷上方面</p>
+          <p>新神戸方面</p>
         </div>
         <div
           className={
-            isWestBound
+            isForSeishin
               ? styles.selectedDirectionButton
               : styles.unselectedDirectionButton
           }
-          onClick={() => setIsWestBound(!isWestBound)}
+          onClick={() => setIsForSeishin(!isForSeishin)}
         >
           <p>西神方面</p>
         </div>
@@ -129,10 +138,11 @@ const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
       <div className={styles.timetableInfo}>
         <DiaSign isHoliday={isHoliday} />
         <DirectionButton
-          isWestBound={isWestBound}
-          setIsWestBound={setIsWestBound}
+          isForSeishin={isForSeishin}
+          setIsForSeishin={setIsForSeishin}
         />
       </div>
+      <p>{isLoading ? "Now Loading..." : "Loading Complete!!"}</p>
     </div>
   );
 };
@@ -157,9 +167,4 @@ const Sidebar: React.FC<StationProps> = ({
   return <div className={styles.sidebar}>{stationButtons}</div>;
 };
 
-export default HomePage;
-
-export async function getServerSideProps() {
-  const timeline = await getTimeLine();
-  return { props: { timeline } };
-}
+export default IndexPage;
