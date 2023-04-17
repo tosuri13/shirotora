@@ -35,7 +35,7 @@ export default async function handler(
   return res.status(200).json(response);
 }
 
-const getTimeLine = async (requestURL: string) => {
+const getTimeLine = async (requestURL: string): Promise<object> => {
   const response: JSDOM = await JSDOM.fromURL(requestURL);
   const document: Document = response.window.document;
 
@@ -50,12 +50,14 @@ const getTimeLine = async (requestURL: string) => {
       );
       const timeFrame = Array.from(node.querySelectorAll(".time-frame")).map(
         (node) => {
-          const time = node.getElementsByClassName("time").item(0)?.textContent;
+          const minute = node
+            .getElementsByClassName("time")
+            .item(0)?.textContent;
           const dest = node
             .getElementsByClassName("ruby-dest")
             .item(0)
             ?.textContent.replace("谷上", "新神戸");
-          return { time, type: "normal", dest };
+          return { minute, type: "normal", dest };
         }
       );
       return { ...object, [hour]: timeFrame };

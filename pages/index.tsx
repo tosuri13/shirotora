@@ -4,6 +4,7 @@ import styles from "styles/Index.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import { StationButton } from "components/StationButton";
+import { TimeCard } from "components/TimeCard";
 import { getIsHoliday } from "service/getIsHoliday";
 import { getTimetable } from "service/getTimetable";
 
@@ -46,7 +47,7 @@ const IndexPage: NextPage = () => {
     <div>
       <Header />
       <div className={styles.main}>
-        <TimeTable selectedStation={selectedStation} />
+        <TimeTableInfo selectedStation={selectedStation} />
         <Sidebar
           selectedStation={selectedStation}
           setSelectedStation={setSelectedStation}
@@ -57,7 +58,7 @@ const IndexPage: NextPage = () => {
   );
 };
 
-const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
+const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
   const [isHoliday, setIsHoliday] = useState<boolean | undefined>(undefined);
   const [isForSeishin, setIsForSeishin] = useState<boolean>(true);
   const [timetable, setTimetable] = useState<object>(undefined);
@@ -132,6 +133,23 @@ const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
     );
   };
 
+  const Timetable: React.FC<{ timetable: object }> = ({ timetable }) => {
+    const timetableList = Object.entries(timetable);
+    const timecards = timetableList.map(([hour, timecards], firstIndex) => {
+      return timecards.map(({ minute, type, dest }, secondIndex) => {
+        return (
+          <Fragment key={secondIndex}>
+            <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
+            {(firstIndex !== timetableList.length - 1 ||
+              secondIndex !== timecards.length - 1) && <span />}
+          </Fragment>
+        );
+      });
+    });
+
+    return <div className={styles.timetable}>{timecards}</div>;
+  };
+
   return (
     <div className={styles.timetable}>
       <StationSign selectedStation={selectedStation} />
@@ -142,7 +160,11 @@ const TimeTable: React.FC<StationProps> = ({ selectedStation }) => {
           setIsForSeishin={setIsForSeishin}
         />
       </div>
-      <p>{isLoading ? "Now Loading..." : "Loading Complete!!"}</p>
+      {isLoading ? (
+        <div className={styles.loading}>Now Loading...</div>
+      ) : (
+        <Timetable timetable={timetable} />
+      )}
     </div>
   );
 };
