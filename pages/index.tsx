@@ -148,7 +148,11 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
       });
     });
 
-    return <div className={styles.timetable}>{timecards}</div>;
+    return timecards.length ? (
+      <div className={styles.timetable}>{timecards}</div>
+    ) : (
+      <div className={styles.missing}>終点なので時刻表はありません!!</div>
+    );
   };
 
   return (

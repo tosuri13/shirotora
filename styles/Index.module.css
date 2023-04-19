@@ -119,6 +119,12 @@
   margin: 20rem 0;
 }
 
+.missing {
+  font-size: 6rem;
+  text-align: center;
+  margin: 20rem 0;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
