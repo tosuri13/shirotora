@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/earlyaccess/notosansjp.css");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@700&display=swap");
 
 :root {
   --srtr-green: #20ae93;
@@ -8,7 +8,7 @@
   padding: 0;
   margin: 0;
   font-size: 8px;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "M PLUS 1p", sans-serif;
   font-weight: bold;
   box-sizing: border-box;
 }

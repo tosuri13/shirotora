@@ -43,27 +43,27 @@ const getTimeLine = async (requestURL: string): Promise<object> => {
     document.querySelectorAll(".time-table-frame")
   ).filter((node) => node.className !== "time-table-frame none")[0];
 
-  const timeline = Array.from(timeTableFrame.querySelectorAll("dl")).reduce(
-    (object, node) => {
-      const hour = Number(
-        node.getElementsByClassName("diagram-frame__hour").item(0)?.textContent!
-      );
-      const timeFrame = Array.from(node.querySelectorAll(".time-frame")).map(
-        (node) => {
-          const minute = node
-            .getElementsByClassName("time")
-            .item(0)?.textContent;
-          const dest = node
-            .getElementsByClassName("ruby-dest")
-            .item(0)
-            ?.textContent.replace("谷上", "新神戸");
-          return { minute, type: "normal", dest };
-        }
-      );
-      return { ...object, [hour]: timeFrame };
-    },
-    {}
-  );
+  const timeLineList = Array.from(timeTableFrame.querySelectorAll("dl"));
+  const timeline = timeLineList.reduce((object, node, index1) => {
+    const hour = node
+      .getElementsByClassName("diagram-frame__hour")
+      .item(0)?.textContent;
+    const timeFrameList = Array.from(node.querySelectorAll(".time-frame"));
+    const timeFrame = timeFrameList.map((node, index2) => {
+      const minute = node.getElementsByClassName("time").item(0)?.textContent;
+      const isFirst = index1 === 0 && index2 === 0;
+      const isLast =
+        index1 === timeLineList.length - 1 &&
+        index2 === timeFrameList.length - 1;
+      const type = isFirst ? "first" : isLast ? "last" : "normal";
+      const dest = node
+        .getElementsByClassName("ruby-dest")
+        .item(0)
+        ?.textContent.replace("谷上", "新神戸");
+      return { minute, type, dest };
+    });
+    return { ...object, [hour]: timeFrame };
+  }, {});
 
   return timeline;
 };

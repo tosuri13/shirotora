@@ -98,6 +98,7 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
         ) : (
           <img src="/icons/normal_subway.svg" />
         )}
+        <span />
         <p>{isHoliday ? "休日ダイヤ" : "平日ダイヤ"}</p>
       </div>
     );
@@ -134,14 +135,14 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
   };
 
   const Timetable: React.FC<{ timetable: object }> = ({ timetable }) => {
-    const timetableList = Object.entries(timetable);
-    const timecards = timetableList.map(([hour, timecards], firstIndex) => {
-      return timecards.map(({ minute, type, dest }, secondIndex) => {
+    const sortedTimetable = Object.entries(timetable).sort();
+    const timecards = sortedTimetable.map(([hour, timecards], index1) => {
+      return timecards.map(({ minute, type, dest }, index2) => {
         return (
-          <Fragment key={secondIndex}>
+          <Fragment key={hour + minute}>
             <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
-            {(firstIndex !== timetableList.length - 1 ||
-              secondIndex !== timecards.length - 1) && <span />}
+            {(index1 !== sortedTimetable.length - 1 ||
+              index2 !== timecards.length - 1) && <span />}
           </Fragment>
         );
       });
@@ -160,11 +161,13 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
           setIsForSeishin={setIsForSeishin}
         />
       </div>
-      {isLoading ? (
-        <div className={styles.loading}>Now Loading...</div>
-      ) : (
-        <Timetable timetable={timetable} />
-      )}
+      <div className={styles.timecards}>
+        {isLoading ? (
+          <div className={styles.loading}>Now Loading...</div>
+        ) : (
+          <Timetable timetable={timetable} />
+        )}
+      </div>
     </div>
   );
 };

@@ -15,10 +15,11 @@ export const TimeCard: React.FC<Props> = ({ hour, minute, type, dest }) => {
     <div className={styles.timecard}>
       <div className={styles.timeinfo}>
         <div className={styles.border} />
+        <span />
         <p className={styles.time}>{hour + ":" + minute}</p>
+        {isFirst && <div className={styles.typeIcon}>始</div>}
+        {isLast && <div className={styles.typeIcon}>終</div>}
       </div>
-      {isFirst && <div className={styles.typeIcon}>始</div>}
-      {isLast && <div className={styles.typeIcon}>終</div>}
       <p className={styles.dest}>{dest + "行き"}</p>
     </div>
   );
