@@ -105,12 +105,41 @@
   font-size: 3rem;
 }
 
-.timetable span {
+.timecards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.timecards span {
   height: 2rem;
 }
 
-.timecards {
-  width: 100%;
+.timebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: first;
+  align-items: center;
+  background: var(--srtr-green);
+  border-radius: 0.5rem;
+  width: 108rem;
+  height: 5rem;
+  padding: 0 2rem;
+}
+
+.timebar span {
+  width: 2rem;
+}
+
+.timebar p {
+  color: white;
+  font-size: 2.5rem;
+}
+
+.timebarButton {
+  width: 3rem;
+  height: 3rem;
 }
 
 .loading {

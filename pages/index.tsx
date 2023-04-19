@@ -18,6 +18,12 @@ type DirectionProps = {
   setIsForSeishin?: Dispatch<SetStateAction<boolean>>;
 };
 
+type TimeCardInfo = {
+  minute: string;
+  type: string;
+  dest: string;
+};
+
 const stations: string[] = [
   "新神戸",
   "三宮",
@@ -136,22 +142,55 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
 
   const Timetable: React.FC<{ timetable: object }> = ({ timetable }) => {
     const sortedTimetable = Object.entries(timetable).sort();
-    const timecards = sortedTimetable.map(([hour, timecards], index1) => {
-      return timecards.map(({ minute, type, dest }, index2) => {
-        return (
-          <Fragment key={hour + minute}>
-            <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
-            {(index1 !== sortedTimetable.length - 1 ||
-              index2 !== timecards.length - 1) && <span />}
-          </Fragment>
-        );
-      });
+    const timecards = sortedTimetable.map(([hour, timecards], index) => {
+      return (
+        <Fragment key={hour}>
+          <TimeCards hour={hour} timetable={timecards} />
+          {index !== sortedTimetable.length - 1 && <span />}
+        </Fragment>
+      );
     });
 
     return timecards.length ? (
-      <div className={styles.timetable}>{timecards}</div>
+      <div className={styles.timecards}>{timecards}</div>
     ) : (
       <div className={styles.missing}>終点なので時刻表はありません!!</div>
+    );
+  };
+
+  const TimeCards: React.FC<{
+    hour: string;
+    timetable: Array<TimeCardInfo>;
+  }> = ({ hour, timetable }) => {
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const buttonImgPath = isOpen
+      ? "/icons/down_button.svg"
+      : "/icons/up_button.svg";
+
+    const timecards = timetable
+      .map(({ minute, type, dest }) => {
+        return (
+          <Fragment key={minute}>
+            <span />
+            <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
+          </Fragment>
+        );
+      })
+      .filter((element) => element);
+
+    return (
+      <Fragment>
+        <div className={styles.timebar}>
+          <img
+            src={buttonImgPath}
+            className={styles.timebarButton}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <span />
+          <p>{Number(hour)}時</p>
+        </div>
+        {isOpen && <div className={styles.timecards}>{timecards}</div>}
+      </Fragment>
     );
   };
 
