@@ -164,8 +164,8 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
   }> = ({ hour, timetable }) => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const buttonImgPath = isOpen
-      ? "/icons/down_button.svg"
-      : "/icons/up_button.svg";
+      ? "/icons/up_button.svg"
+      : "/icons/down_button.svg";
 
     const timecards = timetable
       .map(({ minute, type, dest }) => {
