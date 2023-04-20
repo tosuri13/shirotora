@@ -141,32 +141,21 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
   };
 
   const Timetable: React.FC<{ timetable: object }> = ({ timetable }) => {
-    const nowHour = new Date().getHours();
-    const fixHour =
-      nowHour < resetTime || nowHour === 24 ? (nowHour % 24) + 24 : nowHour;
-    const nowMinute = new Date().getMinutes();
-    const optimizedTimetable = Object.entries(timetable)
-      .sort()
-      .filter(([hour, _]) => {
-        return fixHour <= Number(hour);
-      });
+    const sortedTimetable = Object.entries(timetable).sort();
 
-    const timecards = optimizedTimetable.map(([hour, timecards], index) => {
+    const timecards = sortedTimetable.map(([hour, timecards], index) => {
       return (
         <Fragment key={hour}>
           <TimeCards hour={hour} timetable={timecards} />
-          {index !== optimizedTimetable.length - 1 && <span />}
+          {index !== sortedTimetable.length - 1 && <span />}
         </Fragment>
       );
     });
 
     const isLastStop = Object.keys(timetable).length === 0;
-    const isFinished = optimizedTimetable.length === 0;
 
     return isLastStop ? (
       <div className={styles.missing}>終点なので時刻表はありません!!</div>
-    ) : isFinished ? (
-      <div className={styles.missing}>今日の電車はもうありません!!</div>
     ) : (
       <div className={styles.timecards}>{timecards}</div>
     );
@@ -177,30 +166,25 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
     timetable: Array<TimeCardInfo>;
   }> = ({ hour, timetable }) => {
     const nowHour = new Date().getHours();
-    const [isOpen, setIsOpen] = useState<boolean>(nowHour === Number(hour));
+    const fixHour = nowHour === 0 ? 24 : nowHour;
+    const [isOpen, setIsOpen] = useState<boolean>(fixHour === Number(hour));
     const buttonImgPath = isOpen
       ? "/icons/up_button.svg"
       : "/icons/down_button.svg";
 
-    const timecards = timetable
-      .map(({ minute, type, dest }) => {
-        return (
-          <Fragment key={minute}>
-            <span />
-            <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
-          </Fragment>
-        );
-      })
-      .filter((element) => element);
+    const timecards = timetable.map(({ minute, type, dest }) => {
+      return (
+        <Fragment key={minute}>
+          <span />
+          <TimeCard hour={hour} minute={minute} type={type} dest={dest} />
+        </Fragment>
+      );
+    });
 
     return (
       <Fragment>
-        <div className={styles.timebar}>
-          <img
-            src={buttonImgPath}
-            className={styles.timebarButton}
-            onClick={() => setIsOpen(!isOpen)}
-          />
+        <div className={styles.timebar} onClick={() => setIsOpen(!isOpen)}>
+          <img src={buttonImgPath} className={styles.timebarButton} />
           <span />
           <p>{Number(hour)}時</p>
         </div>

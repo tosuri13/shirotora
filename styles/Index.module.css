@@ -126,6 +126,7 @@
   width: 108rem;
   height: 5rem;
   padding: 0 2rem;
+  cursor: pointer;
 }
 
 .timebar span {
@@ -140,7 +141,6 @@
 .timebarButton {
   width: 3rem;
   height: 3rem;
-  cursor: pointer;
 }
 
 .loading {
