@@ -42,8 +42,8 @@ const stations: string[] = [
   "西神南",
   "西神中央",
 ];
-
 const initialStation: string = stations[0];
+const resetTime: number = 3;
 
 const IndexPage: NextPage = () => {
   const [selectedStation, setSelectedStation] =
@@ -141,20 +141,34 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
   };
 
   const Timetable: React.FC<{ timetable: object }> = ({ timetable }) => {
-    const sortedTimetable = Object.entries(timetable).sort();
-    const timecards = sortedTimetable.map(([hour, timecards], index) => {
+    const nowHour = new Date().getHours();
+    const fixHour =
+      nowHour < resetTime || nowHour === 24 ? (nowHour % 24) + 24 : nowHour;
+    const nowMinute = new Date().getMinutes();
+    const optimizedTimetable = Object.entries(timetable)
+      .sort()
+      .filter(([hour, _]) => {
+        return fixHour <= Number(hour);
+      });
+
+    const timecards = optimizedTimetable.map(([hour, timecards], index) => {
       return (
         <Fragment key={hour}>
           <TimeCards hour={hour} timetable={timecards} />
-          {index !== sortedTimetable.length - 1 && <span />}
+          {index !== optimizedTimetable.length - 1 && <span />}
         </Fragment>
       );
     });
 
-    return timecards.length ? (
-      <div className={styles.timecards}>{timecards}</div>
-    ) : (
+    const isLastStop = Object.keys(timetable).length === 0;
+    const isFinished = optimizedTimetable.length === 0;
+
+    return isLastStop ? (
       <div className={styles.missing}>終点なので時刻表はありません!!</div>
+    ) : isFinished ? (
+      <div className={styles.missing}>今日の電車はもうありません!!</div>
+    ) : (
+      <div className={styles.timecards}>{timecards}</div>
     );
   };
 
@@ -162,7 +176,8 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
     hour: string;
     timetable: Array<TimeCardInfo>;
   }> = ({ hour, timetable }) => {
-    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const nowHour = new Date().getHours();
+    const [isOpen, setIsOpen] = useState<boolean>(nowHour === Number(hour));
     const buttonImgPath = isOpen
       ? "/icons/up_button.svg"
       : "/icons/down_button.svg";
