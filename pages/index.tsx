@@ -25,6 +25,7 @@ type TimeCardInfo = {
 };
 
 const stations: string[] = [
+  "谷上",
   "新神戸",
   "三宮",
   "県庁前",
@@ -43,7 +44,6 @@ const stations: string[] = [
   "西神中央",
 ];
 const initialStation: string = stations[0];
-const resetTime: number = 3;
 
 const IndexPage: NextPage = () => {
   const [selectedStation, setSelectedStation] =
@@ -124,7 +124,7 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
           }
           onClick={() => setIsForSeishin(!isForSeishin)}
         >
-          <p>新神戸方面</p>
+          <p>谷上方面</p>
         </div>
         <div
           className={

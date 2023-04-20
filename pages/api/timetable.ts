@@ -3,6 +3,7 @@ import { JSDOM } from "jsdom";
 
 const baseURL = "https://www.navitime.co.jp/diagram/timetable";
 const stationNodeIds = [
+  "00005867",
   "00004269",
   "00009263",
   "00002101",
@@ -20,7 +21,8 @@ const stationNodeIds = [
   "00004819",
   "00004818",
 ];
-const lineId = "00000703";
+const seishinLineId = "00000703";
+const hokushinLineId = "00000851";
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,7 +31,10 @@ export default async function handler(
   const { stationIndex, isForSeishin } = req.body;
   const nodeId = stationNodeIds[stationIndex];
   const updown = isForSeishin ? "&updown=1" : "&updown=0";
-  const requestURL = baseURL + "?node=" + nodeId + "&lineId=" + lineId + updown;
+  const isHokushin = stationIndex === 0 || (stationIndex == 1 && !isForSeishin);
+  const requestURL = isHokushin
+    ? baseURL + "?node=" + nodeId + "&lineId=" + hokushinLineId + updown
+    : baseURL + "?node=" + nodeId + "&lineId=" + seishinLineId + updown;
 
   const response = await getTimeLine(requestURL);
   return res.status(200).json(response);
@@ -58,8 +63,7 @@ const getTimeLine = async (requestURL: string): Promise<object> => {
       const type = isFirst ? "first" : isLast ? "last" : "normal";
       const dest = node
         .getElementsByClassName("ruby-dest")
-        .item(0)
-        ?.textContent.replace("谷上", "新神戸");
+        .item(0)?.textContent;
       return { minute, type, dest };
     });
     return { ...object, [hour]: timeFrame };
