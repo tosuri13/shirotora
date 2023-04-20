@@ -1,6 +1,6 @@
 import styles from "./Footer.module.css";
 
-export default function Footer(props) {
+export default function Footer(_props) {
   return (
     <div className={styles.footer}>
       <p>@2023 UniUrchin</p>

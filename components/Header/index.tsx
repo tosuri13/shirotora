@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import styles from "./Header.module.css";
 
-export default function Header(props) {
+export default function Header(_props) {
   return (
     <div className={styles.header}>
       <h1>SHIROTORA</h1>
