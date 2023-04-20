@@ -5,9 +5,21 @@ import Footer from "components/Footer";
 
 const AboutPage: NextPage = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <div className={styles.main}>あばうと建設予定地</div>
+      <div className={styles.description}>
+        <h1>What is SHIROTORA?</h1>
+        <p>
+          SHIROTORAは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。
+        </p>
+        <p>
+          時刻表のデータはNAVITIMEの公式Webサイトから直接スクレイピングして取得しています。
+        </p>
+        <p>
+          個人用にNext.js + React +
+          TypeScriptで頑張って作りました。すごいでしょえっへん。
+        </p>
+      </div>
       <Footer />
     </div>
   );
