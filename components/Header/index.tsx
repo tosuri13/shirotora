@@ -4,7 +4,11 @@ import styles from "./Header.module.css";
 export default function Header(_props) {
   return (
     <div className={styles.header}>
-      <h1>SHIROTORA</h1>
+      <div className={styles.logo}>
+        <img className={styles.logo} src="/shirotora.png" />
+        <span />
+        <h1>SHIROTORA</h1>
+      </div>
       <div className={styles.menu}>
         <NextLink href="/" legacyBehavior>
           <a>Home</a>

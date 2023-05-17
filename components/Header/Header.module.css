@@ -10,9 +10,24 @@
   padding: 0 10rem;
 }
 
-.header H1 {
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo h1 {
   margin: 0;
   font-size: 6rem;
+}
+
+.logo span {
+  width: 1.5rem;
+}
+
+.logo img {
+  width: 6rem;
+  height: 6rem;
 }
 
 .menu {
