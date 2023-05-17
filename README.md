@@ -1,13 +1,20 @@
+<div align="center">
+  <img align="center" width="180" src="public/shirotora.png" />
+</div>
+
 <h1 align="center">Shirotora</h1>
-<p align="center">
+
+<div align="center">
   <img src="https://img.shields.io/badge/npm-1.18.2-green" />
   <img src="https://img.shields.io/badge/yarn-1.22.19-6495ED.svg?style=flat" />
   <img src="https://img.shields.io/badge/Next.js-13.2.4-000000.svg?logo=Next.js&style=flat" />
   <img src="https://img.shields.io/badge/React-18.2.0-5DD3F2.svg?logo=react&style=flat" />
   <img src="https://img.shields.io/badge/TypeScript-18.2.0-3073BF.svg?logo=typescript&style=flat" />
   <img src="https://therealsujitk-vercel-badge.vercel.app/?app=shirotora" />
-</p>
+</div>
+
 <br>
+
 <p align="center">
 SHIROTORAは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。<br>NAVITIMEからAPI Routesを通してスクレイピングしているため重いですが、それでも使いたい人は使ってください。</p>
 
