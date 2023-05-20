@@ -1,5 +1,5 @@
 <div align="center">
-  <img align="center" width="180" src="public/shirotora.png" />
+  <img align="center" width="180" src="./docs/images/shirotora_icon.png" />
 </div>
 
 <h1 align="center">Shirotora</h1>
@@ -16,11 +16,11 @@
 <br>
 
 <p align="center">
-SHIROTORAは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。<br>NAVITIMEからAPI Routesを通してスクレイピングしているため重いですが、それでも使いたい人は使ってください。</p>
+Shirotoraは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。<br>NAVITIMEからAPI Routesを通してスクレイピングしているため重いですが、それでも使いたい人は使ってください。</p>
 
 ## ✨ Product
 
-- SHIROTORA: https://shirotora.vercel.app
+- Shirotora: https://shirotora.vercel.app
 
 <br>
 <div align="center">
@@ -55,7 +55,7 @@ yarn build && yarn start
 
 ## 🧩 External Dependencies
 
-SHIROTORAでは、外部サイトからスクレイピングを通してリアルタイムに時刻表を取得しています。そのため、交通遅延および外部サイトの仕様変更などが発生した場合は、正しい情報が表示されなくなる可能性があります。
+Shirotoraでは、外部サイトからスクレイピングを通してリアルタイムに時刻表を取得しています。そのため、交通遅延および外部サイトの仕様変更などが発生した場合は、正しい情報が表示されなくなる可能性があります。
 
 - 神戸市営地下鉄HP
   - https://www.city.kobe.lg.jp/a80062/kurashi/access/kotsukyoku/subway/index.html
