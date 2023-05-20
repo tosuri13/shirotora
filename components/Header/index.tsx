@@ -7,7 +7,7 @@ export default function Header(_props) {
       <div className={styles.logo}>
         <img className={styles.logo} src="/shirotora.png" />
         <span />
-        <h1>SHIROTORA</h1>
+        <h1>Shirotora</h1>
       </div>
       <div className={styles.menu}>
         <NextLink href="/" legacyBehavior>

@@ -8,9 +8,9 @@ const AboutPage: NextPage = () => {
     <div className={styles.container}>
       <Header />
       <div className={styles.description}>
-        <h1>What is SHIROTORA?</h1>
+        <h1>What is Shirotora?</h1>
         <p>
-          SHIROTORAは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。
+          Shirotoraは、神戸市営地下鉄の西神・山手線の時刻表を見やすく表示してくれるWebアプリケーションです。
         </p>
         <p>
           時刻表のデータはNAVITIMEの公式Webサイトから直接スクレイピングして取得しています。
