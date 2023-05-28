@@ -46,23 +46,3 @@ const CustomRadioButton: React.FC<Props> = ({
     </div>
   );
 };
-
-// const CustomRadioButton: React.FC<Props> = ({
-//   station,
-//   isSelected,
-//   setSelectedStation,
-// }) => {
-//   return isSelected ? (
-//     <div
-//       className={styles.selected}
-//       onClick={() => setSelectedStation(station)}
-//     >
-//       <div className={styles.selectedInlineCircle} />
-//     </div>
-//   ) : (
-//     <div
-//       className={styles.unselected}
-//       onClick={() => setSelectedStation(station)}
-//     />
-//   );
-// };
