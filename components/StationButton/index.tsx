@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { AnimatePresence, animate, motion } from "framer-motion";
 import styles from "./StationButton.module.css";
 
 type Props = {
@@ -30,17 +31,38 @@ const CustomRadioButton: React.FC<Props> = ({
   isSelected,
   setSelectedStation,
 }) => {
-  return isSelected ? (
-    <div
-      className={styles.selected}
-      onClick={() => setSelectedStation(station)}
-    >
-      <div className={styles.selectedInlineCircle} />
+  return (
+    <div className={styles.radio} onClick={() => setSelectedStation(station)}>
+      <AnimatePresence>
+        {isSelected && (
+          <motion.div
+            className={styles.selected}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          ></motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  ) : (
-    <div
-      className={styles.unselected}
-      onClick={() => setSelectedStation(station)}
-    />
   );
 };
+
+// const CustomRadioButton: React.FC<Props> = ({
+//   station,
+//   isSelected,
+//   setSelectedStation,
+// }) => {
+//   return isSelected ? (
+//     <div
+//       className={styles.selected}
+//       onClick={() => setSelectedStation(station)}
+//     >
+//       <div className={styles.selectedInlineCircle} />
+//     </div>
+//   ) : (
+//     <div
+//       className={styles.unselected}
+//       onClick={() => setSelectedStation(station)}
+//     />
+//   );
+// };
