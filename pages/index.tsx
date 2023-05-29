@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { Dispatch, SetStateAction, useEffect, useState, Fragment } from "react";
+import { motion } from "framer-motion";
 import styles from "styles/Index.module.css";
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -184,7 +185,21 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
     return (
       <Fragment>
         <div className={styles.timebar} onClick={() => setIsOpen(!isOpen)}>
-          <img src={buttonImgPath} className={styles.timebarButton} />
+          <motion.img
+            src="/icons/station_button.svg"
+            className={styles.timebarButton}
+            variants={{
+              open: {
+                rotate: 0,
+                transition: { type: "tween", duration: 0.2 },
+              },
+              close: {
+                rotate: 180,
+                transition: { type: "tween", duration: 0.2 },
+              },
+            }}
+            animate={isOpen ? "open" : "close"}
+          />
           <span />
           <p>{Number(hour)}時</p>
         </div>
