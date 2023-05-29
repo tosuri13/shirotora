@@ -195,12 +195,21 @@ const TimeTableInfo: React.FC<StationProps> = ({ selectedStation }) => {
                 transition: { type: "tween", duration: 0.2 },
               },
             }}
+            initial={isOpen ? "open" : "close"}
             animate={isOpen ? "open" : "close"}
           />
           <span />
           <p>{Number(hour)}時</p>
         </div>
-        {isOpen && <div className={styles.timecards}>{timecards}</div>}
+        {isOpen && (
+          <motion.div
+            className={styles.timecards}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+          >
+            {timecards}
+          </motion.div>
+        )}
       </Fragment>
     );
   };
