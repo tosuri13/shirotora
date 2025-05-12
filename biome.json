@@ -24,7 +24,7 @@
     }
   },
 	"organizeImports": {
-    "enabled": false
+    "enabled": true
   },
   "vcs": {
     "enabled": true,
