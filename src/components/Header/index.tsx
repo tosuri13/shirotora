@@ -2,7 +2,7 @@ import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
 
 export const Header = () => {
   return (
-    <div className="flex h-[64px] items-center justify-between bg-theme-primary px-[24px] py-[12px] text-white">
+    <div className="flex h-[64px] w-full items-center justify-between bg-theme-primary px-[24px] py-[12px] text-white">
       <div className="flex items-center gap-[8px]">
         <img alt="アイコン" src="/icon.png" className="size-[36px]" />
         <h1 className="font-bold text-[32px]">Shirotora</h1>
