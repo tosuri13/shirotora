@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+@thema {
+  --color-thema-primary: #00A384;
+}
