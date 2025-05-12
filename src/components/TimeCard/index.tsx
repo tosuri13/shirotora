@@ -1,28 +1,29 @@
+import type { Record } from "@/types/Time";
+
 export type TimeCardProps = {
-  time: string;
-  to: string;
-  isFirst?: boolean;
-  isLast?: boolean;
+  record: Record;
 };
 
-export const TimeCard = ({ time, to, isFirst, isLast }: TimeCardProps) => {
+export const TimeCard = ({ record }: TimeCardProps) => {
   return (
     <div className="flex w-full items-center justify-between rounded-[8px] border border-theme-primary bg-white px-[20px] py-[8px]">
       <div className="flex items-center gap-[8px]">
         <span className="h-[24px] w-[4px] bg-theme-primary" />
-        <p className="w-[64px] font-semibold text-[24px] text-black">{time}</p>
-        {isFirst && (
+        <p className="w-[64px] font-semibold text-[24px] text-black">
+          {record.time}
+        </p>
+        {record.isFirst && (
           <div className="flex size-[32px] items-center justify-center rounded-[8px] bg-rose-600">
             <p className="font-bold text-[20px] text-white">始</p>
           </div>
         )}
-        {isLast && (
+        {record.isLast && (
           <div className="flex size-[32px] items-center justify-center rounded-[8px] bg-rose-600">
             <p className="font-bold text-[20px] text-white">終</p>
           </div>
         )}
       </div>
-      <p className="font-semibold text-[16px] text-theme-primary">{`${to}行き`}</p>
+      <p className="font-semibold text-[16px] text-theme-primary">{`${record.to}行き`}</p>
     </div>
   );
 };

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^12.8.0",
-    "date-fns": "^4.1.0",
+    "@radix-ui/react-accordion": "^1.2.10",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
