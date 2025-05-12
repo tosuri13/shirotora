@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Shirotora",
   description:
     "神戸市営地下鉄西神・山手線の時刻表を見やすく表示してくれるWebアプリケーション",
+  icons: [{ rel: "icon", url: "/icon.png" }],
 };
 
 export default function RootLayout({
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="h-dvh w-dvw">
+      <body className="h-dvh w-dvw bg-white">
         <div className="flex w-full flex-col">
           <Header />
           {children}

@@ -5,7 +5,7 @@ export default function AppPage() {
     "14時": [
       { time: "14:00", to: "西神中央" },
       { time: "14:05", to: "西神中央", isFirst: true },
-      { time: "14:07", to: "西神中央", isFirst: true },
+      { time: "14:07", to: "西神中央", isLast: true },
     ],
     "15時": [
       { time: "15:00", to: "西神中央" },
