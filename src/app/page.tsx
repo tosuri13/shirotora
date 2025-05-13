@@ -2,7 +2,7 @@ import { DiaIndicator } from "@/components/DiaIndicator";
 import { TimeAccordion } from "@/components/TimeAccordion";
 
 export default function AppPage() {
-  const timeTable = {
+  const timetable = {
     "14時": [
       { time: "14:00", to: "西神中央" },
       { time: "14:05", to: "西神中央", isFirst: true },
@@ -18,7 +18,7 @@ export default function AppPage() {
   return (
     <div className="flex h-full w-[600px] flex-col gap-[16px] p-[16px]">
       <DiaIndicator />
-      <TimeAccordion timeTable={timeTable} />
+      <TimeAccordion timetable={timetable} />
     </div>
   );
 }

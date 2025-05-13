@@ -1,4 +1,4 @@
-import type { Record } from "@/types/Time";
+import type { Record } from "@/types/Diagram";
 
 export type TimeCardProps = {
   record: Record;
