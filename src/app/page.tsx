@@ -1,3 +1,4 @@
+import { DiaIndicator } from "@/components/DiaIndicator";
 import { TimeAccordion } from "@/components/TimeAccordion";
 
 export default function AppPage() {
@@ -15,7 +16,8 @@ export default function AppPage() {
   };
 
   return (
-    <div className="flex h-full w-[600px] p-[16px]">
+    <div className="flex h-full w-[600px] flex-col gap-[16px] p-[16px]">
+      <DiaIndicator />
       <TimeAccordion timeTable={timeTable} />
     </div>
   );
