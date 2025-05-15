@@ -12,7 +12,7 @@ import { useTimeTable } from "./hooks";
 
 export type TimeAccordionProps = {
   nodeId: string;
-  direction: "up" | "down";
+  direction: string;
 };
 
 export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
@@ -20,8 +20,13 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
 
   if (!timeTable) {
     return (
-      <div className="h-full w-full">
-        <LoaderCircle className="animate-spin stroke-theme-primary" />
+      <div className="flex w-full flex-col gap-[8px]">
+        {Array.from({ length: 20 }).map((_, index) => (
+          <div
+            key={String(index)}
+            className="h-[32px] w-full animate-pulse rounded-[8px] bg-theme-primary/20"
+          />
+        ))}
       </div>
     );
   }

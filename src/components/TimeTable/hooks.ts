@@ -5,7 +5,7 @@ import { useMemo } from "react";
 
 export type UseTimeTableProps = {
   nodeId: string;
-  direction: "up" | "down";
+  direction: string;
 };
 
 export const useTimeTable = ({ nodeId, direction }: UseTimeTableProps) => {

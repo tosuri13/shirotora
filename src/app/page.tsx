@@ -1,5 +1,9 @@
 import { StationBoard } from "@/components/StationBoard";
 
 export default function AppPage() {
-  return <StationBoard />;
+  return (
+    <div className="px-[32px] py-[24px]">
+      <StationBoard />
+    </div>
+  );
 }

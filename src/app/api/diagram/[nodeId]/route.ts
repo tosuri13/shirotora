@@ -49,11 +49,13 @@ const getTimetable = async (url: string): Promise<Record[]> => {
     records.push({ time, to });
   });
 
-  records[0] = { ...records[0], isFirst: true };
-  records[records.length - 1] = {
-    ...records[records.length - 1],
-    isLast: true,
-  };
+  if (records.length) {
+    records[0] = { ...records[0], isFirst: true };
+    records[records.length - 1] = {
+      ...records[records.length - 1],
+      isLast: true,
+    };
+  }
 
   return records;
 };

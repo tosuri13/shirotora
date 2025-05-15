@@ -1,12 +1,18 @@
+import { stations } from "@/configs/station";
 import { cn } from "@/lib/utils";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-import { stations } from "../configs/station";
 
 export type StationSelectorProps = RadioGroup.RadioGroupProps;
 
-export const StationSelector = ({ ...props }: StationSelectorProps) => {
+export const StationSelector = ({
+  className,
+  ...props
+}: StationSelectorProps) => {
   return (
-    <RadioGroup.Root className="relative flex flex-col gap-[16px]" {...props}>
+    <RadioGroup.Root
+      className={cn("relative flex flex-col gap-[16px]", className)}
+      {...props}
+    >
       {stations.map(({ nodeId, name }, index) => (
         <div key={nodeId} className="flex w-[320px] items-center gap-[16px]">
           <RadioGroup.Item

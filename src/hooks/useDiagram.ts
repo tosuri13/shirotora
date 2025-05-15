@@ -5,7 +5,7 @@ import useSWR from "swr";
 
 export type UseDiagramProps = {
   nodeId: string;
-  direction: "up" | "down";
+  direction: string;
 };
 
 export const useDiagram = ({ nodeId, direction }: UseDiagramProps) => {

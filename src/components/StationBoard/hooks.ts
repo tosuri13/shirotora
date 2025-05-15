@@ -1,14 +1,19 @@
 "use client";
 
+import { stations } from "@/configs/station";
 import { useCallback, useState } from "react";
-import { stations } from "../configs/station";
 
 export const useStationBoard = () => {
   const [nodeId, setNodeId] = useState<string>(stations[0].nodeId);
+  const [direction, setDirection] = useState<string>("up");
 
   const onSelectStation = useCallback((nodeId: string) => {
     setNodeId(nodeId);
   }, []);
 
-  return { nodeId, onSelectStation };
+  const onSelectDirection = useCallback((direction: string) => {
+    setDirection(direction);
+  }, []);
+
+  return { nodeId, direction, onSelectStation, onSelectDirection };
 };
