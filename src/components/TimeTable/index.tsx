@@ -7,6 +7,7 @@ import {
   Root as AccordionRoot,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
+import { format } from "date-fns";
 import { CircleChevronRight } from "lucide-react";
 import { useTimeTable } from "./hooks";
 
@@ -32,7 +33,11 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
   }
 
   return (
-    <AccordionRoot className="flex w-full flex-col gap-[8px]" type="multiple">
+    <AccordionRoot
+      defaultValue={[format(new Date(), "HH")]}
+      className="flex w-full flex-col gap-[8px]"
+      type="multiple"
+    >
       {[...timeTable.entries()].map(([baseTime, records]) => (
         <AccordionItem key={baseTime} value={baseTime}>
           <AccordionTrigger className="flex h-[36px] w-full items-center gap-[8px] rounded-[8px] bg-theme-primary px-[12px]">
