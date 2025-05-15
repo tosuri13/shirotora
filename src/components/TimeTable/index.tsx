@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
 import { format } from "date-fns";
-import { CircleChevronRight } from "lucide-react";
+import { Annoyed, CircleChevronRight } from "lucide-react";
 import { useTimeTable } from "./hooks";
 
 export type TimeAccordionProps = {
@@ -19,7 +19,7 @@ export type TimeAccordionProps = {
 export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
   const { timeTable } = useTimeTable({ nodeId, direction });
 
-  if (!timeTable) {
+  if (timeTable === undefined) {
     return (
       <div className="flex w-full flex-col gap-[8px]">
         {Array.from({ length: 20 }).map((_, index) => (
@@ -28,6 +28,17 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
             className="h-[36px] w-full animate-pulse rounded-[8px] bg-gray-300"
           />
         ))}
+      </div>
+    );
+  }
+
+  if ([...timeTable.entries()].length === 0) {
+    return (
+      <div className="mt-[96px] flex w-full flex-col items-center justify-center gap-[16px]">
+        <Annoyed className="size-[120px] stroke-theme-primary/50" />
+        <p className="text-[24px] text-theme-primary/50">
+          終点なので時刻表なし
+        </p>
       </div>
     );
   }
