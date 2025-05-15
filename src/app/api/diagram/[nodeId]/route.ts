@@ -18,7 +18,7 @@ export async function GET(
   const records = await getTimetable(targetUrl);
 
   return Response.json({
-    timetable: records,
+    timeTable: records,
   });
 }
 

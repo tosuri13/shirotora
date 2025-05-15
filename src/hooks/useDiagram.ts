@@ -1,3 +1,6 @@
+"use client";
+
+import type { Record } from "@/types/Diagram";
 import useSWR from "swr";
 
 export type UseDiagramProps = {
@@ -6,5 +9,15 @@ export type UseDiagramProps = {
 };
 
 export const useDiagram = ({ nodeId, direction }: UseDiagramProps) => {
-  return useSWR("");
+  const query = new URLSearchParams({ direction });
+
+  const key = `/api/diagram/${nodeId}?${query}`;
+  const fetcher = async () => {
+    const response = await fetch(key);
+    const diagram = (await response.json()) as { timeTable: Record[] };
+
+    return diagram;
+  };
+
+  return useSWR(key, fetcher);
 };
