@@ -1,3 +1,4 @@
+import { stations } from "@/configs/station";
 import type { Record } from "@/types/Diagram";
 import * as cheerio from "cheerio";
 import type { NextRequest } from "next/server";
@@ -12,7 +13,7 @@ export async function GET(
   const queryParams = request.nextUrl.searchParams;
 
   const { nodeId } = await params;
-  const direction = queryParams.get("direction") as "up" | "down";
+  const direction = queryParams.get("direction") as string;
 
   const targetUrl = buildUrl(nodeId, direction);
   const records = await getTimetable(targetUrl);
@@ -22,12 +23,12 @@ export async function GET(
   });
 }
 
-const buildUrl = (nodeId: string, direction: "up" | "down"): string => {
+const buildUrl = (nodeId: string, direction: string): string => {
   const baseUrl = "https://www.navitime.co.jp/diagram/timetable";
 
-  // FIXME: マジックナンバー過ぎるので、どこかのconfigにマッピング情報を切り出したい
   const isHokusinLine =
-    nodeId === "00005867" || (nodeId === "00004269" && direction === "down");
+    nodeId === stations[0].nodeId ||
+    (nodeId === stations[1].nodeId && direction === "up");
 
   const lineId = isHokusinLine ? HOKUSIN_LINE_ID : SEISIN_LINE_ID;
   const updown = direction === "down" ? "1" : "0";
