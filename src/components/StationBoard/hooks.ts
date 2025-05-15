@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 
 export const useStationBoard = () => {
   const [nodeId, setNodeId] = useState<string>(stations[0].nodeId);
-  const [direction, setDirection] = useState<string>("up");
+  const [direction, setDirection] = useState<string>("down");
 
   const onSelectStation = useCallback((nodeId: string) => {
     setNodeId(nodeId);

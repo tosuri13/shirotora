@@ -28,7 +28,10 @@ export const StationSelector = ({
               <div className="m-auto h-[16px] w-[16px] rounded-full bg-theme-primary" />
             </RadioGroup.Indicator>
           </RadioGroup.Item>
-          <label className="font-semibold text-[24px]" htmlFor={nodeId}>
+          <label
+            className="cursor-pointer font-semibold text-[24px]"
+            htmlFor={nodeId}
+          >
             {name}
           </label>
         </div>

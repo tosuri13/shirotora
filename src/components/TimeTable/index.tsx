@@ -7,7 +7,7 @@ import {
   Root as AccordionRoot,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
-import { CircleChevronDown, LoaderCircle } from "lucide-react";
+import { CircleChevronRight } from "lucide-react";
 import { useTimeTable } from "./hooks";
 
 export type TimeAccordionProps = {
@@ -24,7 +24,7 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
         {Array.from({ length: 20 }).map((_, index) => (
           <div
             key={String(index)}
-            className="h-[32px] w-full animate-pulse rounded-[8px] bg-theme-primary/20"
+            className="h-[36px] w-full animate-pulse rounded-[8px] bg-theme-primary/20"
           />
         ))}
       </div>
@@ -35,8 +35,8 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
     <AccordionRoot className="flex w-full flex-col gap-[8px]" type="multiple">
       {[...timeTable.entries()].map(([baseTime, records]) => (
         <AccordionItem key={baseTime} value={baseTime}>
-          <AccordionTrigger className="flex h-[32px] w-full items-center gap-[4px] rounded-[8px] bg-theme-primary px-[12px]">
-            <CircleChevronDown className="size-[16px] stroke-white" />
+          <AccordionTrigger className="flex h-[36px] w-full items-center gap-[8px] rounded-[8px] bg-theme-primary px-[12px]">
+            <CircleChevronRight className="size-[20px] stroke-white" />
             <p className="font-semibold text-[16px] text-white">{baseTime}時</p>
           </AccordionTrigger>
           <AccordionContent className="flex w-full flex-col gap-[8px] data-[state=open]:mt-[8px]">

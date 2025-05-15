@@ -7,7 +7,7 @@ export type TimeCardProps = {
 export const TimeCard = ({ record }: TimeCardProps) => {
   return (
     <div className="flex w-full items-center justify-between rounded-[8px] border border-theme-primary bg-white px-[20px] py-[8px]">
-      <div className="flex items-center gap-[8px]">
+      <div className="flex items-center gap-[12px]">
         <span className="h-[24px] w-[4px] bg-theme-primary" />
         <p className="w-[64px] font-semibold text-[24px] text-black">
           {record.time}
