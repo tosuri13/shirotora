@@ -25,7 +25,7 @@ export const TimeTable = ({ nodeId, direction }: TimeAccordionProps) => {
         {Array.from({ length: 20 }).map((_, index) => (
           <div
             key={String(index)}
-            className="h-[36px] w-full animate-pulse rounded-[8px] bg-theme-primary/20"
+            className="h-[36px] w-full animate-pulse rounded-[8px] bg-gray-300"
           />
         ))}
       </div>

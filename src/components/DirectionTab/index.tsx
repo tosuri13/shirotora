@@ -10,7 +10,7 @@ export const DirectionTab = ({ ...props }: DirectionTabProps) => {
         <Tabs.Trigger
           value="up"
           className={cn(
-            "bg-white px-[24px] py-[8px] text-center font-semibold text-theme-primary",
+            "bg-white px-[12px] py-[8px] text-center font-semibold text-[12px] text-theme-primary lg:px-[24px] lg:text-[16px]",
             "data-[state=active]:bg-theme-primary data-[state=active]:text-white",
           )}
         >
@@ -19,7 +19,7 @@ export const DirectionTab = ({ ...props }: DirectionTabProps) => {
         <Tabs.Trigger
           value="down"
           className={cn(
-            "bg-white px-[24px] py-[8px] text-center font-semibold text-theme-primary",
+            "bg-white px-[12px] py-[8px] text-center font-semibold text-[12px] text-theme-primary lg:px-[24px] lg:text-[16px]",
             "data-[state=active]:bg-theme-primary data-[state=active]:text-white",
           )}
         >
